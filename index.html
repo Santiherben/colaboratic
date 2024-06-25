@@ -20,6 +20,11 @@
             margin: 0;
             font-family: 'Oswald', sans-serif;
         }
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .card {
             width: 300px;
             height: 400px;
@@ -49,6 +54,8 @@
         }
         .button-container {
             margin-top: 20px;
+            display: none;
+            text-align: center;
         }
         .button {
             padding: 10px 20px;
@@ -60,21 +67,30 @@
             cursor: pointer;
             text-decoration: none;
             font-family: 'Oswald', sans-serif;
+            transition: background-color 0.3s;
         }
         .button:hover {
             background-color: #03396c;
         }
+        .button:active {
+            background-color: #d6006f;
+        }
+        .card-container:hover .button-container {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <div class="card" onclick="toggleCard()">
-        <div class="card-inner">
-            <div class="card-front"></div>
-            <div class="card-back"></div>
+    <div class="card-container">
+        <div class="card" onclick="toggleCard()">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back"></div>
+            </div>
         </div>
-    </div>
-    <div class="button-container">
-        <a href="https://forms.gle/JUG5U6r5pHJEtpkR7" target="_blank" class="button">Ir al Formulario</a>
+        <div class="button-container">
+            <a href="https://forms.gle/JUG5U6r5pHJEtpkR7" target="_blank" class="button">Ir al Formulario</a>
+        </div>
     </div>
     <script>
         let flipped = false;
@@ -90,5 +106,3 @@
     </script>
 </body>
 </html>
-
-
