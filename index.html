@@ -78,6 +78,9 @@
         .card-container:hover .button-container {
             display: block;
         }
+        .flipped .button {
+            background-color: #d6006f;
+        }
     </style>
 </head>
 <body>
@@ -96,13 +99,17 @@
         let flipped = false;
         function toggleCard() {
             const cardInner = document.querySelector('.card-inner');
+            const buttonContainer = document.querySelector('.button-container');
             if (flipped) {
                 cardInner.style.transform = 'rotateY(0deg)';
+                buttonContainer.classList.remove('flipped');
             } else {
                 cardInner.style.transform = 'rotateY(180deg)';
+                buttonContainer.classList.add('flipped');
             }
             flipped = !flipped;
         }
     </script>
 </body>
 </html>
+
