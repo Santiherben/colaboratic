@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,13 +8,17 @@
     <meta property="og:description" content="Explora esta tarjeta interactiva que se voltea al hacer clic." />
     <meta property="og:image" content="https://colaboratic.vercel.app/2.png" />
     <meta property="og:url" content="https://colaboratic.vercel.app/" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
         }
         .card {
             width: 300px;
@@ -45,6 +47,23 @@
             background-image: url('3.png');
             transform: rotateY(180deg);
         }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #04428B;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+        }
+        .button:hover {
+            background-color: #03396c;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +72,9 @@
             <div class="card-front"></div>
             <div class="card-back"></div>
         </div>
+    </div>
+    <div class="button-container">
+        <a href="https://forms.gle/JUG5U6r5pHJEtpkR7" target="_blank" class="button">Ir al Formulario</a>
     </div>
     <script>
         let flipped = false;
@@ -68,4 +90,5 @@
     </script>
 </body>
 </html>
+
 
