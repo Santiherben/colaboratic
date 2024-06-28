@@ -6,7 +6,7 @@
     <title>Tarjeta Interactiva</title>
     <meta property="og:title" content="Tarjeta Interactiva" />
     <meta property="og:description" content="Explora esta tarjeta interactiva que se voltea al hacer clic." />
-    <meta property="og:image" content="https://colaboratic.vercel.app/2.png" />
+    <meta property="og:image" content="https://colaboratic.vercel.app/2.jpg" />
     <meta property="og:url" content="https://colaboratic.vercel.app/" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -24,6 +24,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 20px; /* Add space between card and button */
+            position: relative; /* Ensure button can be placed absolutely */
         }
         .card {
             width: 90vw; /* Use 90% of the viewport width */
@@ -40,7 +42,7 @@
             transform-style: preserve-3d;
             cursor: pointer;
         }
-        .card-front, .card-back {
+        .card-side {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -50,22 +52,29 @@
             background-position: center;
         }
         .card-front {
-            background-image: url('2.png');
+            background-image: url('2.jpg');
+            transform: rotateY(0deg) translateZ(150px);
+        }
+        .card-middle {
+            background-image: url('3.jpg');
+            transform: rotateY(120deg) translateZ(150px);
         }
         .card-back {
-            background-image: url('3.png');
-            transform: rotateY(180deg);
+            background-image: url('4.jpg');
+            transform: rotateY(240deg) translateZ(150px);
         }
         .button-container {
-            margin-top: 20px;
-            display: none;
             text-align: center;
+            position: absolute;
+            bottom: -60px; /* Adjust to position button below the card */
+            width: 100%;
+            z-index: 10; /* Ensure button is above the card */
         }
         .button {
             padding: 10px 20px;
             font-size: 16px;
             color: white;
-            background-color: #d6006f;
+            background-color: #d6006f; /* Initial color */
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -74,16 +83,10 @@
             transition: background-color 0.3s;
         }
         .button:hover {
-            background-color: #d6006f;
+            background-color: #03396c;
         }
         .button:active {
             background-color: #d6006f;
-        }
-        .card-container:hover .button-container {
-            display: block;
-        }
-        .flipped .button {
-            background-color: #03396c;
         }
     </style>
 </head>
@@ -91,28 +94,25 @@
     <div class="card-container">
         <div class="card" onclick="toggleCard()">
             <div class="card-inner">
-                <div class="card-front"></div>
-                <div class="card-back"></div>
+                <div class="card-side card-front"></div>
+                <div class="card-side card-middle"></div>
+                <div class="card-side card-back"></div>
             </div>
-        </div>
-        <div class="button-container">
-            <a href="https://forms.gle/JUG5U6r5pHJEtpkR7" target="_blank" class="button">Ir al Formulario</a>
+            <div class="button-container">
+                <a href="https://forms.gle/JUG5U6r5pHJEtpkR7" target="_blank" class="button" id="actionButton">Ir al Formulario</a>
+            </div>
         </div>
     </div>
     <script>
-        let flipped = false;
+        let currentRotation = 0;
         function toggleCard() {
             const cardInner = document.querySelector('.card-inner');
-            const buttonContainer = document.querySelector('.button-container');
-            if (flipped) {
-                cardInner.style.transform = 'rotateY(0deg)';
-                buttonContainer.classList.remove('flipped');
-            } else {
-                cardInner.style.transform = 'rotateY(180deg)';
-                buttonContainer.classList.add('flipped');
-            }
-            flipped = !flipped;
+            const button = document.getElementById('actionButton');
+            currentRotation = (currentRotation + 120) % 360;
+            cardInner.style.transform = `rotateY(${currentRotation}deg)`;
+            button.style.backgroundColor = (currentRotation === 0) ? '#d6006f' : '#03396c';
         }
     </script>
 </body>
 </html>
+
